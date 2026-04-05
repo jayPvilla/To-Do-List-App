@@ -1,0 +1,101 @@
+.container {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 30px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    max-width: 800px;
+    color: white;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    margin-bottom: 20px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.input-group {
+    display: flex;
+    background: white;
+    border: 2px outset transparent;
+    border-radius: 30px;
+    padding: 5px;
+    margin-bottom: 20px;
+    transition: all 0.5s ease;
+}
+
+.input-group:hover,
+.input-group:focus {
+    border: 2px solid mediumslateblue;
+    box-shadow: 0 0 10px rgba(123, 104, 238, 0.3);
+}
+
+input {
+    border: none;
+    outline: none;
+    padding: 10px 20px;
+    flex: 1;
+    border-radius: 30px;
+    font-size: 16px;
+}
+
+#addBtn {
+    border: none;
+    background: #4facfe;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+ul {
+    list-style: none;
+    width: 100%;
+}
+
+li {
+    background: rgba(255, 255, 255, 0.2);
+    margin-bottom: 10px;
+    padding: 12px 15px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.completed span {
+    text-decoration: line-through;
+    opacity: 0.6;
+}
+
+.actions button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    margin-left: 10px;
+}
+.filters {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 10px;
+
+}
+
+.filters button{
+    border: none;
+    background: mediumslateblue;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    margin-bottom: 20px;
+    width: 100px;
+}

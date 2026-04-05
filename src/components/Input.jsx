@@ -1,0 +1,34 @@
+import React, { useState } from 'react';
+
+const Input = ({ lists, set_list }) => {
+  const [task_value, set_task] = useState("");
+
+  function add_task() {
+    const ids = lists.map(item => Number(item.id));
+    const recent_id = ids.length > 0 ? Math.max(...ids) : 0;
+
+    const new_task = {
+      id: (recent_id + 1).toString(),
+      task: task_value,
+      status: "Pending"
+    };
+
+    set_list([...lists, new_task]);
+    set_task("");
+  }
+
+  return (
+    <div className="input-group">
+        <input 
+          type="text" 
+          id="taskInput" 
+          placeholder="Enter a task..." 
+          onChange={(e) => set_task(e.target.value)} 
+          value={task_value}
+        />
+        <button id="addBtn" onClick={add_task}>Add</button>
+    </div>
+  )
+}
+
+export default Input
