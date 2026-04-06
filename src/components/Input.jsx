@@ -13,8 +13,13 @@ const Input = ({ lists, set_list }) => {
       status: "Pending"
     };
 
-    set_list([...lists, new_task]);
-    set_task("");
+    const updatedList = [...lists, new_task];
+    
+    // Update State
+    set_list(updatedList);
+    
+    // Update LocalStorage with the new array directly
+    localStorage.setItem('List', JSON.stringify(updatedList));
   }
 
   return (

@@ -6,9 +6,13 @@ import React, { useState } from 'react';
 
 const Container = () => {
 
- const [lists = [], set_list] = useState(() => {
+  const [lists, set_list] = useState(() => {
     const saved = localStorage.getItem('List');
-    return saved ? JSON.parse(saved) : []; 
+    try {
+      return saved ? JSON.parse(saved) : [];
+    } catch (e) {
+      return []; // Safety check for malformed JSON
+    }
   });
 
   return (
@@ -23,7 +27,7 @@ const Container = () => {
             <button>Pending</button>
         </div>
 
-        <TaskList tasks={lists} />
+        <TaskList lists={lists} />
     </div>
   )
 };
