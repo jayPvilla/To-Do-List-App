@@ -3,11 +3,13 @@ import './TaskList.jsx';
 import TaskList from './TaskList.jsx';
 import Input from './Input.jsx';
 import React, { useState } from 'react';
-import ListsData from './lists.json';
 
 const Container = () => {
 
-  const [lists, set_list] = useState(ListsData);
+ const [lists = [], set_list] = useState(() => {
+    const saved = localStorage.getItem('List');
+    return saved ? JSON.parse(saved) : []; 
+  });
 
   return (
     <div className="container">
