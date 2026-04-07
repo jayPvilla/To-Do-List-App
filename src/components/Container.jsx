@@ -7,6 +7,7 @@ import React, { useState } from 'react';
 const Container = () => {
 
   const [lists, set_list] = useState(() => {
+
     const saved = localStorage.getItem('List');
     try {
       return saved ? JSON.parse(saved) : [];
@@ -15,6 +16,14 @@ const Container = () => {
     }
   });
 
+  let [filter, set_filter] = useState("All");
+  
+  const filteredList = lists.filter(task => {
+    if (filter === "All") return true;
+    return task.status === filter;
+  });
+  
+
   return (
     <div className="container">
         <h1>To-Do List</h1>
@@ -22,12 +31,12 @@ const Container = () => {
         <Input lists={lists} set_list={set_list} />
 
         <div className="filters">
-            <button className="active">All</button>
-            <button>Completed</button>
-            <button>Pending</button>
+            <button className={filter === "All" ? "active" : ""} onClick={() => set_filter("All")}>All</button>
+            <button className={filter === "Completed" ? "active" : ""} onClick={() => set_filter("Completed")}>Completed</button>
+            <button className={filter === "Pending" ? "active" : ""} onClick={() => set_filter("Pending")}>Pending</button>
         </div>
 
-        <TaskList lists={lists} />
+        <TaskList lists={filteredList} set_list={set_list} />
     </div>
   )
 };

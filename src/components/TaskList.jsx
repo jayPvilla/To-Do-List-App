@@ -1,4 +1,4 @@
-
+import React, { useState } from 'react';
 
 
 const TaskList = ({lists, set_list}) => {
@@ -8,8 +8,10 @@ const TaskList = ({lists, set_list}) => {
     const updatedList = lists.map(task => {
       if (task.id == id){
         return {...task, status : "Completed"};
+        console.log("Success");
       } else {
         return task
+        console.log("Failed");
       }
     });
 
@@ -20,7 +22,10 @@ const TaskList = ({lists, set_list}) => {
   }
 
   function deleteTask(id){
-
+    const new_list = lists.filter(task => task.id != id);
+    set_list(new_list);
+    localStorage.setItem('List', JSON.stringify(new_list));
+    
   }
 
   return (
