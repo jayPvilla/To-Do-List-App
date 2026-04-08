@@ -28,10 +28,17 @@ const Input = ({ lists, set_list }) => {
           type="text" 
           id="taskInput" 
           placeholder="Enter a task..." 
-          onChange={(e) => set_task(e.target.value)} 
+          onChange={(e) => set_task(e.target.value)}
+          onKeyDown={(e) => {
+            if(e.key === 'Enter' && task_value.trim() !== ""){
+              add_task()
+              set_task("")
+          }}}
           value={task_value}
         />
-        <button id="addBtn" onClick={add_task}>Add</button>
+        <button id="addBtn" onClick={() => {
+          if(task_value.trim() !== "") add_task()
+          }}>Add</button>
     </div>
   )
 }

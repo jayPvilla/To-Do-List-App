@@ -6,9 +6,14 @@
     border-radius: 20px;
     display: flex;
     flex-direction: column;
-    max-width: 800px;
+    max-width: 1000px;
     color: white;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+button{
+    background: #4facfe;
+    color: white;
 }
 
 h1 {
@@ -33,7 +38,7 @@ h1 {
     box-shadow: 0 0 10px rgba(123, 104, 238, 0.3);
 }
 
-input {
+.input-group input {
     border: none;
     outline: none;
     padding: 10px 20px;
@@ -44,12 +49,10 @@ input {
 
 #addBtn {
     border: none;
-    background: #4facfe;
-    color: white;
-    padding: 10px 20px;
     border-radius: 30px;
     cursor: pointer;
     font-weight: 600;
+    padding: 10px 20px;
 }
 
 ul {
@@ -103,4 +106,54 @@ li {
 
 .filters .active {
     background: #4facfe;
+}
+
+
+.list {
+    display: flex;
+    align-items: center;
+    margin-left: 0;
+    gap: 10px;
+}
+.list-task {
+    font-family: 'Courier New', Courier, monospace;
+    display: flex;
+    justify-content: flex-start;
+    flex: 1;
+
+}
+
+.checkbutton {
+    accent-color: #2196F3;
+    cursor: pointer;
+    width: 18px; /* Fixed size keeps it consistent */
+    height: 18px;
+}
+
+label {
+    display: flex;
+    justify-items: center;
+    flex: 1;
+}
+.actions {
+    display: flex;
+    gap: 10px;
+}
+
+.actions button {
+    color: white;
+}
+
+.mark-buttons {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%; 
+}
+
+.mark-complete {
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
 }
