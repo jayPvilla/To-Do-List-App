@@ -12,7 +12,7 @@ const Container = () => {
     try {
       return saved ? JSON.parse(saved) : [];
     } catch (e) {
-      return []; // Safety check for malformed JSON
+      return [];
     }
   });
 

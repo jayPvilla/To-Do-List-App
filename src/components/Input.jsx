@@ -17,6 +17,7 @@ const Input = ({ lists, set_list }) => {
     
     // Update State
     set_list(updatedList);
+    set_task("")
     
     // Update LocalStorage with the new array directly
     localStorage.setItem('List', JSON.stringify(updatedList));

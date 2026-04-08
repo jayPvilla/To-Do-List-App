@@ -3,10 +3,19 @@ import React, { useState } from 'react';
 
 const TaskList = ({lists, set_list}) => {
 
-  function completeTask(id){
-    
+  const [checks, set_check] = useState([]);
+
+  function toggleCheck(id) {
+    set_check(prev => 
+      prev.includes(id) ? prev.filter(itemId => itemId !== id) : [...prev, id]
+    );
+  }
+
+
+  function completeTask(){
+
     const updatedList = lists.map(task => {
-      if (task.id == id){
+      if (checks.includes(task.id)) {
         return {...task, status : "Completed"};
       } else {
         return task
@@ -14,6 +23,7 @@ const TaskList = ({lists, set_list}) => {
     });
 
     set_list(updatedList);
+    set_check([])
 
     localStorage.setItem('List', JSON.stringify(updatedList));
     
@@ -33,21 +43,15 @@ const TaskList = ({lists, set_list}) => {
           <li key={item.id} className='list'>
             <input 
               className='checkbutton' 
-              type='checkbox' 
-              checked={item.status === "Completed"}
-              readOnly
+              type='checkbox'
+              checked={checks.includes(item.id)? true : false}
+              onChange={() => toggleCheck(item.id)}
             />
             <label>
               <span className={`list-task ${item.status === "Completed" ? 'completed' : ''}`}>
                 {item.task}
               </span>
               <div className="actions">
-                {/* Complete Button - Check Icon */}
-                <button className="btn-complete" onClick={() => completeTask(item.id)}>
-                  <i className="fa-solid fa-check"></i>
-                </button>
-                
-                {/* Delete Button - Trash Icon */}
                 <button className="btn-delete" onClick={() => deleteTask(item.id)}>
                   <i className="fa-solid fa-trash"></i>
                 </button>
@@ -57,7 +61,7 @@ const TaskList = ({lists, set_list}) => {
         ))}
       </ul>
       <div className='mark-buttons'>
-        <button className='mark-complete'><i className="fa-solid fa-check"></i>  Mark as Complete</button>
+        <button className='mark-complete' onClick={() => completeTask()}><i className="fa-solid fa-check"></i>  Mark as Complete</button>
       </div>
     </>
   )
