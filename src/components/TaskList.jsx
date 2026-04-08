@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 
-const TaskList = ({lists, set_list}) => {
+const TaskList = ({lists, set_list, filter}) => {
 
   const [checks, set_check] = useState([]);
 
@@ -29,25 +29,32 @@ const TaskList = ({lists, set_list}) => {
     
   }
 
+
   function deleteTask(id){
+
     const new_list = lists.filter(task => task.id != id);
     set_list(new_list);
     localStorage.setItem('List', JSON.stringify(new_list));
     
   }
 
+
   return (
     <>
       <ul id="taskList">
         {lists.map(item => (
           <li key={item.id} className='list'>
-            <input 
-              className='checkbutton' 
-              type='checkbox'
-              checked={checks.includes(item.id)? true : false}
-              onChange={() => toggleCheck(item.id)}
-            />
-            <label>
+            {
+              (filter == "Completed")? true : 
+                <input 
+                  className='checkbutton'
+                  name='checkbutton' 
+                  type='checkbox'
+                  checked={checks.includes(item.id)? true : false}
+                  onChange={() => toggleCheck(item.id)}
+                />
+            }
+            <label for="checkbutton">
               <span className={`list-task ${item.status === "Completed" ? 'completed' : ''}`}>
                 {item.task}
               </span>
@@ -61,7 +68,10 @@ const TaskList = ({lists, set_list}) => {
         ))}
       </ul>
       <div className='mark-buttons'>
-        <button className='mark-complete' onClick={() => completeTask()}><i className="fa-solid fa-check"></i>  Mark as Complete</button>
+        {
+          (filter == "Completed")? true : 
+            <button className='mark-complete' onClick={() => completeTask()}><i className="fa-solid fa-check"></i>  Mark as Complete</button>
+        }
       </div>
     </>
   )

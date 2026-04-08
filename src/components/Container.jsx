@@ -36,7 +36,7 @@ const Container = () => {
             <button className={filter === "Pending" ? "active" : ""} onClick={() => set_filter("Pending")}>Pending</button>
         </div>
 
-        <TaskList lists={filteredList} set_list={set_list} />
+        <TaskList lists={filteredList} set_list={set_list} filter={filter}/>
     </div>
   )
 };
