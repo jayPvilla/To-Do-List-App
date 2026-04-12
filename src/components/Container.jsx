@@ -2,7 +2,7 @@ import './Container.css';
 import './TaskList.jsx';
 import TaskList from './TaskList.jsx';
 import Input from './Input.jsx';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const Container = () => {
 
@@ -26,7 +26,7 @@ const Container = () => {
 
   return (
     <div className="container">
-        <h1>To-Do List</h1>
+        <h1><i class="fa-solid fa-list-check"></i> To-Do List</h1>
 
         <Input lists={lists} set_list={set_list} />
 

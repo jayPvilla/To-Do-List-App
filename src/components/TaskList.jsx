@@ -1,9 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 
 const TaskList = ({lists, set_list, filter}) => {
 
   const [checks, set_check] = useState([]);
+
+  const [list_total, set_list_total] = useState(0);
+
+  useEffect(() => {
+    set_list_total(lists.length)
+  }, [lists])
 
   function toggleCheck(id) {
     set_check(prev => 
@@ -28,7 +34,7 @@ const TaskList = ({lists, set_list, filter}) => {
     localStorage.setItem('List', JSON.stringify(updatedList));
     
   }
-
+  
 
   function deleteTask(id){
 
@@ -38,9 +44,9 @@ const TaskList = ({lists, set_list, filter}) => {
     
   }
 
-
   return (
     <>
+      <p>Total: {list_total}</p>
       <ul id="taskList">
         {lists.map(item => (
           <li key={item.id} className='list'>
@@ -70,7 +76,11 @@ const TaskList = ({lists, set_list, filter}) => {
       <div className='mark-buttons'>
         {
           (filter == "Completed")? true : 
-            <button className='mark-complete' onClick={() => completeTask()}><i className="fa-solid fa-check"></i>  Mark as Complete</button>
+            <button 
+              className='mark-complete'
+              onClick={() => completeTask()}>
+                <i className="fa-solid fa-check"></i>  Mark as Complete
+            </button>
         }
       </div>
     </>
